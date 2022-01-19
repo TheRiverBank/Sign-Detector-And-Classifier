@@ -12,15 +12,16 @@ def process_data():
         for img_name in img_dirs:
             img = cv2.imread(path_to_class + '/' + img_name)
             img = cv2.resize(img, (32, 32))
+            img = np.float32(img)
             data.append(img)
             labels.append(i)
-        data = np.array(data)
-        labels = np.array(labels)
+    data = np.array(data)
+    labels = np.array(labels)
 
-        np.save('./data/data.npy', data)
-        np.save('./data/labels.npy', labels)
+    np.save('./data/data.npy', data)
+    np.save('./data/labels.npy', labels)
 
-        return (data, labels)
+    return (data, labels)
 
 def get_data():
     try:
@@ -31,10 +32,3 @@ def get_data():
         data, labels = process_data()
 
     return data, labels
-
-
-if __name__ == '__main__':
-    process_data()
-    data, labels = get_data()
-
-    print(np.shape(data))

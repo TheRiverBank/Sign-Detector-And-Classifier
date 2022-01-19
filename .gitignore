@@ -2,6 +2,7 @@
 __pycache__/
 data/
 .idea/
+models/
 *.py[cod]
 *$py.class
 

@@ -24,9 +24,7 @@ def get_lower_bar():
 def get_rects(imgs: tuple):
     N, M, C = imgs[0].shape
     n_imgs = len(imgs)
-    print(n_imgs)
     rects = []
-    print(N, M)
 
     for img in imgs:
         for y in range(0, N - config.RECT_SIZE_Y, config.RECT_SIZE_Y//2):
@@ -35,14 +33,3 @@ def get_rects(imgs: tuple):
                 rects.append(rect)
 
     return rects
-
-if __name__ == '__main__':
-    test_img = cv2.imread("./test_images/40_test.png")
-    side_bars = get_side_bars(test_img)
-    rects = get_rects((side_bars[0], side_bars[1]))
-
-
-    for rect in rects:
-        cv2.imshow("img", rect)
-        cv2.waitKey(0)
-
