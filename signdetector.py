@@ -6,7 +6,8 @@ from keras.layers import Conv2D, MaxPooling2D, Dense, Flatten, Dropout
 import matplotlib.pyplot as plt
 import sys
 
-class Sign_detector():
+
+class SignDetector:
     def __init__(self, X, y, n_classes):
         self.X = X
         self.y = y
@@ -26,8 +27,6 @@ class Sign_detector():
         X_train = X_train.astype('float32') / 255
         X_test = X_test.astype('float32') / 255
 
-        # Create number of classes categories
-        print(np.shape(y_test), np.shape(y_train))
         y_train = np_utils.to_categorical(y_train, self.n_classes)
         y_test = np_utils.to_categorical(y_test, self.n_classes)
         model = Sequential()
@@ -81,8 +80,8 @@ def create_model(X, y, n_classes):
     try:
         model = load_model("./models/model")
     except FileNotFoundError:
-        model = Sign_detector(X, y, n_classes)
+        model = SignDetector(X, y, n_classes)
     except IOError:
-        model = Sign_detector(X, y, n_classes)
+        model = SignDetector(X, y, n_classes)
 
     return model

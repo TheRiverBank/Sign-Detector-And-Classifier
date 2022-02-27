@@ -1,6 +1,4 @@
-import cv2
 import config
-import numpy as np
 
 def get_side_bars(img):
     """
@@ -23,7 +21,6 @@ def get_lower_bar():
 
 def get_rects(imgs: tuple):
     N, M, C = imgs[0].shape
-    n_imgs = len(imgs)
     rects = []
 
     for img in imgs:

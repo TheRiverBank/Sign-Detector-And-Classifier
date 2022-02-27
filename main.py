@@ -1,8 +1,9 @@
+import matplotlib.pyplot as plt
 import numpy as np
 
 import config
 import data_processor as dp
-import sign_detector
+import signdetector
 import image_processor as ip
 import cv2
 
@@ -12,10 +13,11 @@ def resize_img(img):
     #img_resized = cv2.blur(img_resized, (3,3), 0)
     return img_resized
 
+
 if __name__ == '__main__':
     X, y = dp.get_data()
 
-    model = sign_detector.Sign_detector(X, y, n_classes=config.CLASSES)
+    model = signdetector.SignDetector(X, y, n_classes=config.CLASSES)
     model = model.train(epochs=25)
 
     test_img = cv2.imread("./test_images/40_test.png")
@@ -25,6 +27,8 @@ if __name__ == '__main__':
 
     speed_sign_names = {0: '20', 1: '30', 2: '50', 3: '60', 4: '70', 5: '80', 6: '80 rem', 7: '100', 8: '120'}
     img = cv2.imread("./data/test/00179.png")
+    plt.imshow(img)
+    plt.show()
     img = resize_img(img)/255
 
     pred = model.predict(img)
